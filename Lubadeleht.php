@@ -24,6 +24,7 @@ function asenda($nr){
 <html>
 <head>
     <title>Lõpetamine</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 <h1>Lõpetamine</h1>
@@ -38,6 +39,7 @@ function asenda($nr){
         <th>Lubade väljastus</th>
     </tr>
     <?php
+    include("header.php");
     while($kask->fetch()){
         $asendatud_slaalom=asenda($slaalom);
         $asendatud_ringtee=asenda($ringtee);
