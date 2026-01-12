@@ -80,5 +80,38 @@ function slaalomVigane($id){
     $kask->execute();
 
 }
-?>
+
+function RingteeKorras($id) {
+    global $yhendus;
+    $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET ringtee=1 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+}
+
+function RingteeVigane($id) {
+    global $yhendus;
+    $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET ringtee=2 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+}
+
+function ringteeTabel()
+{
+    global $yhendus;
+    $kask=$yhendus->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE teooriatulemus>9 AND ringtee=-1");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
+    $kask->execute();
+    include("header.php");
+    while($kask->fetch()){
+        echo "
+ <tr> 
+ <td>$eesnimi</td> 
+ <td>$perekonnanimi</td> 
+ <td> 
+ <a href='?korras_id=$id'>Korras</a> 
+ <a href='?vigane_id=$id'>Ebaõnnestunud</a> 
+ </td> 
+</tr> 
+ ";
+    }
+}
 
