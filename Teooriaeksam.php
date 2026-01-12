@@ -14,10 +14,13 @@ $kask->execute();
 <html>
 <head>
     <title>Teooriaeksam</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+<h1>Teooriaeksam</h1>
 <table>
     <?php
+    include("header.php");
     while($kask->fetch()){
         echo " 
  <tr> 
