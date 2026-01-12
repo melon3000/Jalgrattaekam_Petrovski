@@ -1,14 +1,10 @@
 <?php
-require_once("konf.php");
 global $yhendus;
-if(!empty($_REQUEST["teooriatulemus"])){
-    $kask=$yhendus->prepare(
-        "UPDATE jalgrattaeksam SET teooriatulemus=? WHERE id=?");
-    $kask->bind_param("ii", $_REQUEST["teooriatulemus"], $_REQUEST["id"]); $kask->execute();
+require_once ("funktsioonid.php");
+
+if(!empty($_REQUEST['teooriatulemus'])){
+    teooriatulemus($_REQUEST['teooriatulemus'],$_REQUEST['id']);
 }
-$kask=$yhendus->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE teooriatulemus=-1");
-$kask->bind_result($id, $eesnimi, $perekonnanimi);
-$kask->execute();
 ?>
 <!doctype html>
 <html>
@@ -17,25 +13,25 @@ $kask->execute();
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<h1>Teooriaeksam</h1>
-<table>
-    <?php
-    include("header.php");
-    while($kask->fetch()){
-        echo " 
- <tr> 
- <td>$eesnimi</td> 
- <td>$perekonnanimi</td> 
- <td><form action=''> 
- <input type='hidden' name='id' value='$id' /> 
- <input type='text' name='teooriatulemus' />
- <input type='submit' value='Sisesta tulemus' /> 
- </form> 
- </td> 
-</tr> 
- ";
-    }
-    ?>
-</table>
+<header>
+    <h1>Jalgrattaeksami süsteem</h1>
+    <p>Registreerimine ja eksamite haldamine</p>
+</header>
+<nav>
+    <a href="registreerimine.php">Registreerimine</a>
+    <a href="Teooriaeksam.php">Teooriaeksam</a>
+    <a href="Slaalom.php">Slaalom</a>
+    <a href="Ringtee.php">Ringtee</a>
+    <a href="Tänav.php">Tänavasõit</a>
+    <a href="Lubadeleht.php">Lubadeleht</a>
+</nav>
+<main>
+    <h1>Teooriaeksam</h1>
+    <table>
+        <?php
+        kuvatabel();
+        ?>
+    </table>
+</main>
 </body>
 </html>

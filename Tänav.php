@@ -13,18 +13,20 @@ if(!empty($_REQUEST["vigane_id"])){
     $kask->bind_param("i", $_REQUEST["vigane_id"]);
     $kask->execute();
 }
-$kask=$yhendus->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE slaalom=1 AND ringtee=1 AND t2nav=-1");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
+$kask=$yhendus->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE slaalom=1 AND ringtee=1 AND t2nav=-1 AND teooriatulemus > 9");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
 $kask->execute();
 ?>
 <!doctype html>
 <html>
 <head>
     <title>Tänavasõit</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 <h1>Tänavasõit</h1>
 <table>
     <?php
+    include("header.php");
     while($kask->fetch()){
         echo " 
  <tr> 

@@ -5,17 +5,20 @@ global $yhendus;
  $kask=$yhendus->prepare(
  "INSERT INTO jalgrattaeksam(eesnimi, perekonnanimi) VALUES (?, ?)"); $kask->bind_param("ss", $_REQUEST["eesnimi"], $_REQUEST["perekonnanimi"]); $kask->execute();
 $yhendus->close();
-header("Location: $_SERVER[PHP_SELF]?lisatudeesnimi=$_REQUEST[eesnimi]"); exit();
+header("Location: teooriaeksam.php?lisatudeesnimi=" . urlencode($_REQUEST['eesnimi']));
+     exit();
  }
 ?>
 <!doctype html>
 <html>
  <head>
  <title>Kasutaja registreerimine</title>
+     <link rel="stylesheet" href="style/style.css">
  </head>
  <body>
  <h1>Registreerimine</h1>
  <?php
+ include("header.php");
  if(isSet($_REQUEST["lisatudeesnimi"])){
  echo "Lisati $_REQUEST[lisatudeesnimi]";
  }
@@ -28,5 +31,6 @@ header("Location: $_SERVER[PHP_SELF]?lisatudeesnimi=$_REQUEST[eesnimi]"); exit()
 <dd><input type="text" name="perekonnanimi" /></dd>
  <dt><input type="submit" name="sisestusnupp" value="sisesta" /></dt>  </dl>
 </form>
+ <?php include("footer.php"); ?>
  </body>
 </html>
