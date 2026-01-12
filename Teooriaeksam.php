@@ -2,8 +2,8 @@
 global $yhendus;
 require_once ("funktsioonid.php");
 
-if(!empty($_REQUEST['teooriatulemus'])){
-    teooriatulemus($_REQUEST['teooriatulemus'],$_REQUEST['id']);
+if(!empty($_REQUEST["teooriatulemus"])){
+    teoriatulemus($_REQUEST["teooriatulemus"],$_REQUEST["id"]);
 }
 ?>
 <!doctype html>
@@ -13,18 +13,7 @@ if(!empty($_REQUEST['teooriatulemus'])){
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<header>
-    <h1>Jalgrattaeksami süsteem</h1>
-    <p>Registreerimine ja eksamite haldamine</p>
-</header>
-<nav>
-    <a href="registreerimine.php">Registreerimine</a>
-    <a href="Teooriaeksam.php">Teooriaeksam</a>
-    <a href="Slaalom.php">Slaalom</a>
-    <a href="Ringtee.php">Ringtee</a>
-    <a href="Tänav.php">Tänavasõit</a>
-    <a href="Lubadeleht.php">Lubadeleht</a>
-</nav>
+<?php include ("header.php")?>
 <main>
     <h1>Teooriaeksam</h1>
     <table>
@@ -33,5 +22,6 @@ if(!empty($_REQUEST['teooriatulemus'])){
         ?>
     </table>
 </main>
+<?php require("footer.php");?>
 </body>
 </html>
