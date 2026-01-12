@@ -14,7 +14,7 @@ function registreermine($eesnimi, $perekonnanimi){
     $kask->execute();
     $yhendus->close();
 }
-
+// teooria
 function teooriatulemus($teooriatulemus, $id)
 {
 global $yhendus;
