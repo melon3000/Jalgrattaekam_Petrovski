@@ -1,20 +1,14 @@
 <?php
-require_once("konf.php");
+require_once("funktsioonid.php");
 global $yhendus;
 if(!empty($_REQUEST["korras_id"])){
-    $kask=$yhendus->prepare(
-        "UPDATE jalgrattaeksam SET ringtee=1 WHERE id=?");
-    $kask->bind_param("i", $_REQUEST["korras_id"]);
-    $kask->execute();
+    RingteeKorras($_REQUEST["korras_id"]);
 }
+
 if(!empty($_REQUEST["vigane_id"])){
-    $kask=$yhendus->prepare(
-        "UPDATE jalgrattaeksam SET ringtee=2 WHERE id=?");
-    $kask->bind_param("i", $_REQUEST["vigane_id"]);
-    $kask->execute();
+    RingteeVigane($_REQUEST["vigane_id"]);
 }
-$kask=$yhendus->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE teooriatulemus>9 AND ringtee=-1");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
-$kask->execute();
+
 ?>
 <!doctype html>
 <html>
@@ -26,19 +20,7 @@ $kask->execute();
 <h1>Ringtee</h1>
 <table>
     <?php
-    include("header.php");
-    while($kask->fetch()){
-        echo "
- <tr> 
- <td>$eesnimi</td> 
- <td>$perekonnanimi</td> 
- <td> 
- <a href='?korras_id=$id'>Korras</a> 
- <a href='?vigane_id=$id'>Ebaõnnestunud</a> 
- </td> 
-</tr> 
- ";
-    }
+        ringteeTabel();
     ?>
 </table>
 </body>
